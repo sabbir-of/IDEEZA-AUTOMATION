@@ -31,7 +31,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: "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"
           # Upload entire repository
           path: ./playwright-report
       - name: Deploy to GitHub Pages
