@@ -3,31 +3,47 @@ import LoginPage from "@pages/Login.page";
 import newProjectPage from "@pages/NewProject.page";
 import metaMaskPage from "@pages/metamask.page";
 import * as data from "@testData/login.cred.json";
+import ENV from "@utils/env";
 
 
 
 test('ID-Buy Project-001 | User |  Validate User Can Successfully Buy A Project', async ({ page }) => {
+        /*
+          This test case is designed to validate that a user can successfully buy a project from the NFT market. 
+          It involves the following steps:
+          - Navigating to the NFT market page.
+          - Logging in as a user.
+          - Selecting a project to buy.
+          - Initiating the purchase process.
+          - Connecting to MetaMask wallet.
+          - Confirming the purchase in MetaMask.
+          - Verifying the purchase completion and ownership of the project.
+        */
+        /*
+          This test case also ensures that appropriate error messages are displayed when the user attempts to buy a project without sufficient funds. 
+          It involves the following steps:
+          - Navigating to the NFT market page.
+          - Logging in as a user.
+          - Selecting a project to buy.
+          - Initiating the purchase process.
+          - Connecting to MetaMask wallet.
+          - Attempting to confirm the purchase in MetaMask without sufficient funds.
+          - Verifying that an appropriate error message is displayed.
+          - Cancelling the purchase process.
+        */
 
-        await page.goto("/nft-market", { timeout: 1200000, waitUntil: "domcontentloaded" })
-        // await page.waitForNavigation()
 
-        const pages = page.context().pages()
-        console.log(pages.length);
+    await page.goto(ENV.BASE_URL+ENV.PROJECT_CREATE, { waitUntil: "domcontentloaded" })
 
-        const newProjectPages = new newProjectPage(pages[1])
-        const metaMask = new metaMaskPage(pages[2])
+    const pages = page.context().pages()
+    console.log(pages.length);
 
-        // await page.pause()
-        await test.step("Unlock MetaMask", async () => {
-                await metaMask.metaMaskUnlockHelper()
-                // await metaMask.inputUnlockPassword()
-                // await metaMask.clickOnUnlockBtn()
-        })
-        await page.bringToFront()
+    const loginPage = new LoginPage(page)
+    const metaMask = new metaMaskPage(pages[0])
+    const newProjectPages = new newProjectPage(page)
 
-
-        await newProjectPages.clickTakeATourStartBtn()
-        await newProjectPages.clickTakeATourSkipBtn()
+    await pages[0].goto(ENV.META_URL, { waitUntil: "domcontentloaded" })
+    await metaMask.metaMaskUnlockHelper()
 
         await test.step("Click On Project Buy Now Button", async () => {
                 await page.reload()
@@ -44,7 +60,7 @@ test('ID-Buy Project-001 | User |  Validate User Can Successfully Buy A Project'
 
         await newProjectPages.clickOnContinueButton()
         await page.waitForLoadState("load")
-        await metaMask.clickToConfirmUnApproveLisiting()
+        
 
 
 

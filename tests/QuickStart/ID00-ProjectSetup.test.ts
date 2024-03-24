@@ -3,23 +3,75 @@ import LoginPage from "@pages/Login.page";
 import newProjectPage from "@pages/NewProject.page";
 import metaMaskPage from "@pages/metamask.page";
 import * as data from "@testData/login.cred.json";
-const { Dappwright } = require('@tenkeylabs/dappwright');
+import ENV from "@utils/env";
+import {deleteFolderRecursive} from "../setup/removeFolder";
 
 const getNumber = Math.floor(Math.random() * 10)
-test.describe('Ideeza Full Project Setup', () => {
+test.describe('IDEEZA Project Setup', () => {
 
-        test('Projext Setup For All The Test Cases', async ({ page }) => {
+        test("Delete Folder", async () => {
+        await deleteFolderRecursive;
+        });
+        test('Project Setup And Wallet Connection', async ({page }) => {
+                /*
+                Navigate to Base URL: Open the base URL of the application, waiting until the DOM content is fully loaded.
+
+Initialize Pages and Contexts:
+
+Get the array of all pages in the current context.
+Log the number of pages.
+Initialize objects for LoginPage, MetaMaskPage, and NewProjectPage.
+Navigate to MetaMask URL: Navigate to the MetaMask URL in the first tab.
+
+Interactions with MetaMask:
+
+Click various checkboxes and buttons related to terms and conditions, creating a wallet, and agreement confirmations.
+Input and confirm a new password.
+Perform several steps to skip account security settings.
+Go through steps to add a new network manually, including entering network details and saving them.
+Import an account by inputting account key details and importing it.
+Bring Main Page to Front and Log In:
+
+Bring the main application page to the forefront.
+Navigate back to the base URL.
+Handle cookie consent.
+Perform login using provided credentials.
+Wait for the network state to idle.
+Navigate Back to MetaMask URL (possibly for further actions).
+
+Interactions in the New Project Pages:
+
+Click through a tutorial or introduction sequence.
+Navigate to a specific section of the user dashboard.
+Go through steps for creating a part with code, including inputting names, selecting categories, setting up block parameters, and defining general settings.
+Blockchain and Minting Options:
+
+Select a blockchain network (e.g., Mumbai Testnet on Polygon).
+Choose and select a collection for the project.
+Set Pricing Details:
+
+Input prices for private and commercial usage.
+Confirm terms and conditions.
+Wallet Connection and Approval:
+
+Initiate a connection to the MetaMask wallet and approve the connection.
+Continue with further application interactions and agree to final terms.
+                 */
 
 
-                await page.goto("/")
+                await page.goto(ENV.BASE_URL, { waitUntil: "domcontentloaded" })
+
                 const pages = page.context().pages()
-                // await pages[1].goto("chrome-extension://jemiocedphikojcheklknknaehfmoedk/home.html")
-
                 console.log(pages.length);
-                const loginPage = new LoginPage(pages[1])
-                const metaMask = new metaMaskPage(pages[2])
+
+                const loginPage = new LoginPage(page)
+                const metaMask = new metaMaskPage(pages[0])
+                const newProjectPages = new newProjectPage(page)
+
+                await pages[0].goto(ENV.META_URL, { waitUntil: "domcontentloaded" })
+
                 // await metaMask.metaMaskUnlockHelper()
-                // await metaMask.gotToUrl()
+                // await metaMask.goToURL()
 
                 await metaMask.clickTermsAndConditionCheckBox()
                 await metaMask.clickOnCreateWalletBtn()
@@ -56,45 +108,29 @@ test.describe('Ideeza Full Project Setup', () => {
                 await metaMask.clickOnImportBtn()
 
                 await page.bringToFront()
+                await page.goto(ENV.BASE_URL, { waitUntil: "domcontentloaded" })
                 await loginPage.clickOnCookiesCheckBox()
                 await loginPage.clickOnApproveBtn()
-                await loginPage.login(data.email, data.password)
-                // await loginPage.clickOnStartProjectBtn()
-                // await loginPage.clickOnNewProjectByYourselftBtn()
-                await page.waitForTimeout(8000)
-                await page.goto("/user/dashboard/project/create/", { timeout: 1200000, waitUntil: "domcontentloaded" })
-                await loginPage.clickTakeATourStartBtn()
-                await loginPage.clickTakeATourSkipBtn()
-
-                await loginPage.clickOnDashboardBtn()
-
-                await loginPage.clickOnNewsFeedPage()
-
-                await page.goto("https://metamask.github.io/test-dapp/", { timeout: 1200000, waitUntil: "domcontentloaded" })
-
-                await page.click("#connectButton", { force: true });
-                // await wallet.approve();
-
-                const popup = await page.context().waitForEvent("page");
-                await popup.getByRole("button", { name: "Next" }).click();
-                await popup.getByRole("button", { name: "Connect" }).click();
-                await page.waitForTimeout(4000)
-
-                // const ele = await page.locator("//span[text()='80001']")
-                // await expect(ele).toBeVisible()
-
-
-                await page.goto("/user/dashboard/code/add-part", { timeout: 1200000, waitUntil: "domcontentloaded" })
+                await loginPage.login(ENV.USERNAME, ENV.PASSWORD)
+                await page.waitForLoadState("networkidle")
+                // await loginPage.clickOnCookiesCheckBox()
+                // await loginPage.clickOnApproveBtn()
 
 
 
-                const newProjectPages = new newProjectPage(pages[1])
+
+                await pages[0].goto(ENV.META_URL, { waitUntil: "domcontentloaded" })
+
+                // await metaMask.metaMaskUnlockHelper()
 
 
 
                 await newProjectPages.clickTakeATourStartBtn()
                 await newProjectPages.clickTakeATourSkipBtn()
 
+                
+
+                await page.goto(ENV.BASE_URL+ "/user/dashboard/code/add-part", { timeout: 1200000, waitUntil: "domcontentloaded" })
                 await test.step("Part Create With Code | Add Part Section", async () => {
 
                         await newProjectPages.inputCodeBlockName()
@@ -106,7 +142,6 @@ test.describe('Ideeza Full Project Setup', () => {
                 })
 
                 await test.step("Add New Part With CodePart Create With Code | Block Parameters Section", async () => {
-
                         await newProjectPages.checkValueInput()
                         await newProjectPages.inputVariableName()
                         await newProjectPages.checkPreviousConnector()
@@ -121,7 +156,6 @@ test.describe('Ideeza Full Project Setup', () => {
                 })
 
                 await test.step("Add New Part With CodePart Create With Code | General Section", async () => {
-
                         await newProjectPages.inputCodePartName()
                         await newProjectPages.inputCodePartDescription()
                         await newProjectPages.clickOnCatagorySection()
@@ -130,7 +164,6 @@ test.describe('Ideeza Full Project Setup', () => {
                         await newProjectPages.clickOnGeneralSectionNextStepBtn()
 
                 })
-
 
                 //Choose Block Chain Mint
                 await newProjectPages.clickToChooseBlockChainMint("Mumbai Testnet (Polygon)")
@@ -153,7 +186,9 @@ test.describe('Ideeza Full Project Setup', () => {
                 await newProjectPages.clickOnConnectWalletBtn()
                 //Click On metamask button
                 // let newOne = null;
-                await newProjectPages.clickOnMetaMaskBtn()
+                // await  newProjectPages.clickOnWalletConnectBtn()
+                await newProjectPages.clickOnMetaMaskBtn()               
+
                 await newProjectPages.approveMetaMask()
 
                 await newProjectPages.clickOnContinueButton()
@@ -162,9 +197,9 @@ test.describe('Ideeza Full Project Setup', () => {
                 //Click On Agree Btn
                 await newProjectPages.clickOnAGreeBtn()
                 await page.waitForLoadState("load")
+
         });
-
-
-
 })
+
+
 

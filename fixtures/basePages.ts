@@ -6,7 +6,7 @@ import signUpPage from "@pages/SignUp.page";
 import { BrowserContext, chromium } from "playwright";
 // import { Page } from "tests/fixtures/chrome-extension"
 // import { test as base }  from "tests/fixtures/chrome-extension"
-import { test as base } from "tests/QuickStart/global-setup"
+import { test as base } from "tests/setup/global-setup"
 import { Page } from "@playwright/test";
 
 

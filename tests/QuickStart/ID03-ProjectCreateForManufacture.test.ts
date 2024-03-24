@@ -3,35 +3,36 @@ import LoginPage from "@pages/Login.page";
 import newProjectPage from "@pages/NewProject.page";
 import metaMaskPage from "@pages/metamask.page";
 import * as data from "@testData/login.cred.json";
+import ENV from "@utils/env";
 
 
 
 
 test('ID-000 | User | Create Project | Sended For Manufacture |  Validate User Can Successfully Send Project To Manufacture', async ({ page }) => {
 
-        await page.goto("/user/dashboard/project/create", { timeout: 1200000, waitUntil: "domcontentloaded" })
+        /*
+This test case verifies that a user can successfully send a project to manufacture.
+It involves the following steps:
+- Logging in with valid credentials.
+- Navigating to the project creation page for manufacturing.
+- Initiating the process to create a new project.
+- Adding necessary parts or components to the project.
+- Sending the project for manufacture.
+- Verifying that the project was successfully sent for manufacture.
+        */
 
+
+        await page.goto(ENV.BASE_URL+ENV.PROJECT_CREATE, { waitUntil: "domcontentloaded" })
 
         const pages = page.context().pages()
         console.log(pages.length);
 
-        //     await pages[0].close()
+        const loginPage = new LoginPage(page)
+        const metaMask = new metaMaskPage(pages[0])
+        const newProjectPages = new newProjectPage(page)
 
-        //page configaration here
-        const newProjectPages = new newProjectPage(pages[1])
-        const metaMask = new metaMaskPage(pages[2])
-
-        // await page.pause()
-        await test.step("Unlock MetaMask", async () => {
-                await metaMask.metaMaskUnlockHelper()
-                // await metaMask.inputUnlockPassword()
-                // await metaMask.clickOnUnlockBtn()
-        })
-        await page.bringToFront()
-
-
-        await newProjectPages.clickTakeATourStartBtn()
-        await newProjectPages.clickTakeATourSkipBtn()
+        await pages[0].goto(ENV.META_URL, { waitUntil: "domcontentloaded" })
+        await metaMask.metaMaskUnlockHelper()
 
         await newProjectPages.clickAddPartsOrComponentsSearchIcon()
         // //search parts and components
@@ -139,11 +140,11 @@ test('ID-000 | User | Create Project | Sended For Manufacture |  Validate User C
         // await newProjectPages.verifyProjectSocialPreviewText("Project social Preview")
 
         // //Click On Video Edit Button
-        // await newProjectPage.clickVideoEditBtn()
+        // await newProjectPages.clickVideoEditBtn()
         // //Click On Video Edit Section Save Button ***Video Editor Does Not Work Properly***
-        // await newProjectPage.clickVideoEditSectionSaveBtn()
+        // await newProjectPages.clickVideoEditSectionSaveBtn()
         // //click on video editor close btn
-        // await newProjectPage.clickToCloseVideoEditor()
+        // await newProjectPages.clickToCloseVideoEditor()
 
         //Click To Disable New Feed Share
         await newProjectPages.clickToDisableNewsFeedShare()

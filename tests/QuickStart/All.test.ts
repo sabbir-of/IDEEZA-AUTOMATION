@@ -10,8 +10,8 @@ import LoginPage from "@pages/Login.page";
 test.describe('User | Quick Start | New Project', () => {
   let context: BrowserContext;
   let page: Page;
-  const pathToExtension = path.join(__dirname, '/MyMetamaskExtension');
-  const userDirData = path.join(__dirname, '/tests/QuickStart/User-Data-Dir/Chrome/User Data/Default/Extensions/nkbihfbeogaeaoehlefnkodbefgpgknn/10.35.1_0');
+  const pathToExtension = path.join(__dirname, './metamask-chrome-11.12.4');
+  const userDirData = path.join(__dirname, '/tests/');
   test.beforeAll(async () => {
     context = await chromium.launchPersistentContext(userDirData, {
       headless: false,
@@ -33,7 +33,7 @@ test.describe('User | Quick Start | New Project', () => {
   });
 
 
-  test.skip('ID-000 | Setup MetaMask Account And Login User', async () => {
+  test.only('ID-000 | Setup MetaMask Account And Login User', async () => {
     page.on("pageerror", (error) => {
       console.error("Page error:", error);
     });
@@ -1644,7 +1644,7 @@ test.describe('User | Quick Start | New Project', () => {
 
   });
 
-  test.only('ID-024 | User | Validate User Can Successfully Send Project To Manufacture', async () => {
+  test('ID-024 | User | Validate User Can Successfully Send Project To Manufacture', async () => {
 
     await page.goto("/user/cart/", { timeout: 1200000, waitUntil: "domcontentloaded" })
     await page.waitForNavigation()

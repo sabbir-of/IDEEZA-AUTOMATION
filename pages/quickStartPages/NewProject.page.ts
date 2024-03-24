@@ -28,7 +28,7 @@ export default class newProjectPage {
                 goBtn: "(//div[contains(@class,'absolute custom-top-icon-creat')])[2]",
                 getStartedBtn: "//div[text()='Get Started']",
                 takeAtourSkipBtn: "//button[@data-action='skip']",
-                newProjectByYourselfBtn: "(//div[text()='Click here to design new project by yourself!'])[3]",
+                newProjectByYourselfBtn: "//div[text()='Click here to design new project by yourself!']",
                 codeSectionBtn: "//div[text()='Code']",
                 coverSection: "//div[text()='Cover']",
                 coverSectionHomeFilterBtn: "//div[@aria-label='Home']//img[1]",
@@ -68,8 +68,8 @@ export default class newProjectPage {
                 noBtn: "//button[text()='No']",
                 alertNoBtn: "//div[text()='Yes']",
                 priceForPrivetPartsBtn: "//div[contains(@class,'bg-white border')]",
-                nextBtn: "//div[@title='next']//button[1]",
-                electronicSectionSubmitBtn: "//button[@type='submit']",
+                nextBtn: "(//div[@title='next']//button)[1]",
+                electronicSectionSubmitBtn: "(//img[@alt='next'])[3]",
                 codeCatagory: "//div[text()='CODE']",
                 systemDefinedBuildIn: "//span[text()='Built-in']",
                 loginCode: "//span[text()='Logic']",
@@ -98,6 +98,8 @@ export default class newProjectPage {
                 stepTwoGiveToTheComunityBtn: "//div[text()='Give To The Community']",
                 connectWalletBtn: `//button[text()='Connect Wallet']`,
                 metaMaskBtn: "//span[text()='MetaMask']",
+                waltConnectBtn: "//span[text()='Coinbase Wallet']",
+                walletSectionCloseBtn: "//button[@aria-label='Close']",
                 contineuBtn: "//div[text()='Continue']",
                 checkOutBtn: "//div[text()='Checkout']",
                 paypalSectionConfirmationCheckBox: "//input[@data-indeterminate='false']",
@@ -1039,7 +1041,7 @@ export default class newProjectPage {
         }
 
         async clickNewProjectByYourselfBtn() {
-                const ele = await this.page.locator(this.newProjectPageElements.newProjectByYourselfBtn)
+                const ele = this.page.locator(this.newProjectPageElements.newProjectByYourselfBtn)
                 await this.page.waitForSelector(this.newProjectPageElements.newProjectByYourselfBtn)
                 try {
                         await ele.click({ button: "left", delay: 100 })
@@ -1050,7 +1052,7 @@ export default class newProjectPage {
 
 
         async inputIdeaForNewProject(text: string) {
-                const ele = await this.page.locator(this.newProjectPageElements.typeIdeaInputField)
+                const ele = this.page.locator(this.newProjectPageElements.typeIdeaInputField)
                 try {
                         await ele.fill(text)
                 } catch (error) {
@@ -1822,6 +1824,7 @@ export default class newProjectPage {
                         if (await ele.isVisible()) {
                                 await ele.click({ button: 'left', delay: 100 })
                         }
+                        await  this.page.waitForTimeout(4000)
 
                 } catch (error) {
                         throw new Error(`User Dashboard | Quick Start | Add New Project | Project Create Connect Wallet Button Is Not Visible | Could not find locator:"${error}"`)
@@ -1830,9 +1833,39 @@ export default class newProjectPage {
         async clickOnMetaMaskBtn() {
                 const ele = await this.page.locator(this.newProjectPageElements.metaMaskBtn)
                 try {
+                        await ele.click({force:
+                                    true})
+                        // if (await ele.isVisible()) {
+                        //         await ele.click({force:
+                        //         true})
+                        //                 await this.page.waitForTimeout(4000)
+                        // }
+
+                } catch (error) {
+                        throw new Error(`User Dashboard | Quick Start | Add New Project | Project Create With Give To The Comunity Connect Wallet Meta Mask Button Is Not Visible | Could not find locator:"${error}"`)
+                }
+        }
+        async clickOnWalletConnectBtn() {
+                const ele = await this.page.locator(this.newProjectPageElements.waltConnectBtn)
+                try {
                         if (await ele.isVisible()) {
-                                await ele.click({ button: "left" }),
-                                        await this.page.waitForTimeout(4000)
+                                await ele.click({force:
+                                            true})
+
+                        }
+
+                } catch (error) {
+                        throw new Error(`User Dashboard | Quick Start | Add New Project | Project Create With Give To The Comunity Connect Wallet Meta Mask Button Is Not Visible | Could not find locator:"${error}"`)
+                }
+        }
+
+        async walletSectionCloseBtn() {
+                const ele = await this.page.locator(this.newProjectPageElements.walletSectionCloseBtn)
+                try {
+                        if (await ele.isVisible()) {
+                                await ele.click({force:
+                                            true})
+
                         }
 
                 } catch (error) {

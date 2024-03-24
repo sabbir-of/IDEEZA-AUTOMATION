@@ -3,36 +3,36 @@ import LoginPage from "@pages/Login.page";
 import newProjectPage from "@pages/NewProject.page";
 import metaMaskPage from "@pages/metamask.page";
 import * as data from "@testData/login.cred.json";
+import ENV from "@utils/env";
 
 
 test('ID-Parts-3DCase-001 | User |  Validate User Can Successfully Part Wit 3D Case', async ({ page }) => {
+        /*
+          This test case verifies that a user can successfully part with a 3D case.
+          It involves the following steps:
+          - Logging in as a user.
+          - Navigating to the dashboard.
+          - Accessing the "Add Part" section.
+          - Selecting the 3D case option.
+          - Verifying the selection and proceeding to customization.
+          - Customizing the 3D case as per requirements.
+          - Adding the customized 3D case to the cart.
+          - Verifying that the 3D case is successfully added to the cart.
+        */
 
-        await page.goto("/user/dashboard/cover/add-part", { timeout: 1200000, waitUntil: "domcontentloaded" })
+
+        await page.goto(ENV.BASE_URL+ENV.PROJECT_CREATE, { waitUntil: "domcontentloaded" })
 
         const pages = page.context().pages()
         console.log(pages.length);
 
-        //     await pages[0].close()
+        const loginPage = new LoginPage(page)
+        const metaMask = new metaMaskPage(pages[0])
+        const newProjectPages = new newProjectPage(page)
 
-        //page configaration here
-        const newProjectPages = new newProjectPage(pages[1])
-        const metaMask = new metaMaskPage(pages[2])
-
-        // await page.pause()
-        await test.step("Unlock MetaMask", async () => {
-                await metaMask.metaMaskUnlockHelper()
-                // await metaMask.inputUnlockPassword()
-                // await metaMask.clickOnUnlockBtn()
-        })
-        await page.bringToFront()
-
-        // await newProjectPages.clickOnApproveBtn()
-        await newProjectPages.clickTakeATourStartBtn()
-        await newProjectPages.clickTakeATourSkipBtn()
-
-        await newProjectPages.clickQuickStartBtn()
-        await newProjectPages.clickOnNewPartBtn()
-        await newProjectPages.clickOn3CCaseBtn()
+        await pages[0].goto(ENV.META_URL, { waitUntil: "domcontentloaded" })
+        await metaMask.metaMaskUnlockHelper()
+        
         //click search btn
         await newProjectPages.clickOnPartsSectionSearchBtn()
 

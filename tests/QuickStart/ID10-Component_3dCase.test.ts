@@ -3,32 +3,43 @@ import LoginPage from "@pages/Login.page";
 import newProjectPage from "@pages/NewProject.page";
 import metaMaskPage from "@pages/metamask.page";
 import * as data from "@testData/login.cred.json";
+import ENV from "@utils/env";
 
 
 
 
 test('ID-Component-3DCase-001 | User |  Validate User Can Successfully Component Wit 3D Case', async ({ page }) => {
+        /*
+          This test case verifies that a user can successfully add a component with a 3D case.
+          It involves the following steps:
+          - Navigating to the component addition section.
+          - Selecting the 3D case option.
+          - Customizing the 3D case as per requirements.
+          - Adding the customized 3D case to the project.
+          - Verifying that the 3D case is successfully added to the project.
+        */
+        /*
+          This test case ensures that a user receives an appropriate error message when attempting to add a component without completing all required fields.
+          It involves the following steps:
+          - Navigating to the component addition section.
+          - Attempting to proceed without selecting a 3D case option.
+          - Verifying that the appropriate error message is displayed.
+          - Attempting to proceed without customizing the 3D case.
+          - Verifying that the appropriate error message is displayed for each required field.
+        */
 
-        await page.goto("/user/dashboard/cover/add-component", { timeout: 1200000, waitUntil: "domcontentloaded" })
 
+        await page.goto(ENV.BASE_URL+ENV.PROJECT_CREATE, { waitUntil: "domcontentloaded" })
 
         const pages = page.context().pages()
         console.log(pages.length);
 
-        const newProjectPages = new newProjectPage(pages[1])
-        const metaMask = new metaMaskPage(pages[2])
+        const loginPage = new LoginPage(page)
+        const metaMask = new metaMaskPage(pages[0])
+        const newProjectPages = new newProjectPage(page)
 
-        // await page.pause()
-        await test.step("Unlock MetaMask", async () => {
-                await metaMask.metaMaskUnlockHelper()
-                // await metaMask.inputUnlockPassword()
-                // await metaMask.clickOnUnlockBtn()
-        })
-        await page.bringToFront()
-
-
-        await newProjectPages.clickTakeATourStartBtn()
-        await newProjectPages.clickTakeATourSkipBtn()
+        await pages[0].goto(ENV.META_URL, { waitUntil: "domcontentloaded" })
+        await metaMask.metaMaskUnlockHelper()
 
         //click search btn
         await newProjectPages.clickOnPartsSectionSearchBtn()

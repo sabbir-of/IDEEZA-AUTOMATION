@@ -13,16 +13,39 @@ import functions from "@testData/helper";
 const getNumber = Math.floor(Math.random() * 10)
 
 
+
+
 test('Campaign Create', async ({ page }) => {
         const loginPage = new LoginPage(page)
         const collectionPage = new CollectionPage(page)
         const functionss = new functions(page)
 
 
+        /*
+          This test case verifies that an admin can successfully create a new campaign in the system.
+          It involves the following steps:
+          - Logging in as an admin.
+          - Navigating to the campaign creation section.
+          - Filling in the campaign details, including name, blockchain mints, collection type, NFT price, and campaign dates.
+          - Uploading an image for the campaign.
+          - Setting up exclusive group join options and subscription discounts.
+          - Submitting the campaign for creation.
+          - Verifying that the campaign has been successfully created and is visible in the admin dashboard.
+        */
+        /*
+          This test case also ensures that appropriate error messages are displayed when the admin attempts to create a campaign without completing all required fields.
+          It involves the following steps:
+          - Logging in as an admin.
+          - Navigating to the campaign creation section.
+          - Attempting to submit the campaign for creation without filling in all necessary details.
+          - Verifying that error messages are displayed for each required field that is left blank.
+          - Correcting the errors and resubmitting the campaign.
+          - Verifying that the campaign is successfully created after all required fields are completed.
+        */
 
 
 
-        await page.goto(ENV.BASE_URL, { timeout: 1200000, waitUntil: "domcontentloaded" })
+        await page.goto(ENV.BASE_URL, { waitUntil: "domcontentloaded" })
 
         await loginPage.clickOnCookiesCheckBox()
         await loginPage.clickOnApproveBtn()

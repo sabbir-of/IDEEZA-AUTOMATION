@@ -9,36 +9,21 @@ import ENV from "@utils/env";
 test.describe('Add Component With Electronics', () => {
 
         // test.use({ storageState: ".auth/user1.json" })
-        test('Add New Project With Give With Community', async ({ page, wallet }) => {
-
-
-                await page.goto("/", { timeout: 1200000, waitUntil: "domcontentloaded" })
-
-                const newProjectPages = new newProjectPage(page)
-                const loginPages = new LoginPage(page)
+        test('Add New Project With Give With Community', async ({ page }) => {
 
 
 
-                await loginPages.clickOnCookiesCheckBox()
-                await loginPages.clickOnApproveBtn()
-                await loginPages.login(data.email, data.password)
+            await page.goto(ENV.BASE_URL+ENV.PROJECT_CREATE, { waitUntil: "domcontentloaded" })
 
-                //     await pages[0].close()
+            const pages = page.context().pages()
+            console.log(pages.length);
 
-                //page configaration here
+            const loginPage = new LoginPage(page)
+            const metaMask = new metaMaskPage(pages[0])
+            const newProjectPages = new newProjectPage(page)
 
-
-                // // await page.pause()
-                // await test.step("Unlock MetaMask", async () => {
-                //         await metaMask.metaMaskUnlockHelper()
-                //         // await metaMask.inputUnlockPassword()
-                //         // await metaMask.clickOnUnlockBtn()
-                // })
-                // await page.bringToFront()
-
-                await page.waitForLoadState("networkidle")
-                await newProjectPages.clickTakeATourStartBtn()
-                await newProjectPages.clickTakeATourSkipBtn()
+            await pages[0].goto(ENV.META_URL, { waitUntil: "domcontentloaded" })
+            await metaMask.metaMaskUnlockHelper()
 
 
                 await newProjectPages.clickOnQuickStartBtn()
@@ -164,7 +149,6 @@ test.describe('Add Component With Electronics', () => {
                 //Click On metamask button
                 await newProjectPages.clickOnMetaMaskBtn()
 
-                await wallet.approve()
 
                 await newProjectPages.clickOnContinueButton()
 

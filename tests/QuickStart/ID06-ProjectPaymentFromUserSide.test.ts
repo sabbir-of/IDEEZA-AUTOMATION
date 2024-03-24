@@ -3,31 +3,49 @@ import LoginPage from "@pages/Login.page";
 import newProjectPage from "@pages/NewProject.page";
 import metaMaskPage from "@pages/metamask.page";
 import * as data from "@testData/login.cred.json";
+import ENV from "@utils/env";
 
 
 
 
 test('ID-001 | User | Validate Manufacture Logout Functionality', async ({ page }) => {
+        /*
+          This test case verifies that a user can successfully make a payment for a project from their side.
+          It involves the following steps:
+          - Logging in as a user.
+          - Navigating to the user dashboard.
+          - Selecting a project to make a payment for.
+          - Initiating the payment process.
+          - Selecting the payment method.
+          - Confirming the payment details.
+          - Completing the payment process.
+          - Verifying that the payment status is updated to "Paid".
+        */
+        /*
+          This test case ensures that a user receives an appropriate error message when attempting to make a payment with insufficient funds.
+          It involves the following steps:
+          - Logging in as a user.
+          - Navigating to the user dashboard.
+          - Selecting a project to make a payment for.
+          - Initiating the payment process.
+          - Selecting the payment method.
+          - Confirming the payment details with insufficient funds.
+          - Verifying that the appropriate error message is displayed.
+          - Cancelling the payment process.
+        */
 
-        await page.goto("/service-provider/dashboard", { timeout: 1200000, waitUntil: "domcontentloaded" })
 
+    await page.goto(ENV.BASE_URL+ENV.PROJECT_CREATE, { waitUntil: "domcontentloaded" })
 
-        const pages = page.context().pages()
-        console.log(pages.length);
+    const pages = page.context().pages()
+    console.log(pages.length);
 
-        //page configaration here
-        const newProjectPages = new newProjectPage(pages[1])
-        const metaMask = new metaMaskPage(pages[2])
+    const loginPage = new LoginPage(page)
+    const metaMask = new metaMaskPage(pages[0])
+    const newProjectPages = new newProjectPage(page)
 
-        // await page.pause()
-        await test.step("Unlock MetaMask", async () => {
-                await metaMask.metaMaskUnlockHelper()
-                // await metaMask.inputUnlockPassword()
-                // await metaMask.clickOnUnlockBtn()
-        })
-        await page.bringToFront()
-
-
+    await pages[0].goto(ENV.META_URL, { waitUntil: "domcontentloaded" })
+    await metaMask.metaMaskUnlockHelper()
 
 
         await newProjectPages.clickOnAvaterBtn()
@@ -44,31 +62,23 @@ test('ID-001 | User | Validate Manufacture Logout Functionality', async ({ page 
 
 test('ID-002 | Manufacture | Validate User Login Functionality', async ({ page }) => {
 
-        await page.goto("/", { timeout: 1200000, waitUntil: "domcontentloaded" });
-        // await page.goto("/", { timeout: 100000 })
 
-        const pages = page.context().pages()
-        console.log(pages.length);
+    await page.goto(ENV.BASE_URL+ENV.PROJECT_CREATE, { waitUntil: "domcontentloaded" })
 
-        const loginPage = new LoginPage(pages[1])
+    const pages = page.context().pages()
+    console.log(pages.length);
 
-        const metaMask = new metaMaskPage(pages[2])
+    const loginPage = new LoginPage(page)
+    const metaMask = new metaMaskPage(pages[0])
+    const newProjectPages = new newProjectPage(page)
 
-        // await page.pause()
-        await test.step("Unlock MetaMask", async () => {
-                await metaMask.metaMaskUnlockHelper()
-                // await metaMask.inputUnlockPassword()
-                // await metaMask.clickOnUnlockBtn()
-        })
-        await page.bringToFront()
+    await pages[0].goto(ENV.META_URL, { waitUntil: "domcontentloaded" })
+    await metaMask.metaMaskUnlockHelper()
 
-        await loginPage.login(data.email, data.password)
-        // await loginPage.clickOnStartProjectBtn()
-        // await loginPage.clickOnNewProjectByYourselftBtn()
-        await page.waitForTimeout(8000)
         await loginPage.clickOnHomeLogo()
 
-        await page.goto("/user/dashboard/project/create/", { timeout: 1200000, waitUntil: "domcontentloaded" })
+        await page.goto(ENV.BASE_URL+"/user/dashboard/project/create/", { waitUntil: "domcontentloaded" })
+       
 
         await loginPage.clickOnWalletBtn()
 

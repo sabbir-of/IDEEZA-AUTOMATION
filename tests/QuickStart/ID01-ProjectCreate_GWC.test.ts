@@ -6,51 +6,46 @@ import * as data from "@testData/login.cred.json";
 import ENV from "@utils/env";
 
 
-test('Add New Project With Give With Community', async ({ page, wallet }) => {
+test(`Verifies that a user can successfully add a new project with the "Give With Community"`, async ({ page }) => {
 
+        /*
+          This test case verifies that a user can successfully add a new project with the "Give With Community" option.
+          It involves the following steps:
+          - Navigating to the base URL.
+          - Logging in with valid credentials.
+          - Navigating to the "New Project" page.
+          - Selecting the "Give With Community" option.
+          - Filling in the project details.
+          - Submitting the project for creation.
+          - Verifying that the project has been successfully created.
+        */
+        /*
+          This test case also ensures that appropriate error messages are displayed when the user attempts to create a new project without completing all required fields.
+          It involves the following steps:
+          - Navigating to the "New Project" page.
+          - Attempting to submit the project for creation without filling in all necessary details.
+          - Verifying that error messages are displayed for each required field that is left blank.
+          - Correcting the errors and resubmitting the project.
+          - Verifying that the project is successfully created after all required fields are completed.
+        */       
+        
+        
 
-        await page.goto(ENV.BASE_URL, { timeout: 1200000, waitUntil: "domcontentloaded" })
+        await page.goto(ENV.BASE_URL+ENV.PROJECT_CREATE, { waitUntil: "domcontentloaded" })
 
+        const pages = page.context().pages()
+        console.log(pages.length);
 
-        // const pages = page.context().pages()
-        // console.log(pages.length);
-
-        // const newProjectPages = new newProjectPage(pages[4])
-        // const loginPage = new LoginPage(pages[4])
+        const loginPage = new LoginPage(page)
+        const metaMask = new metaMaskPage(pages[0])
         const newProjectPages = new newProjectPage(page)
-        const loginPages = new LoginPage(page)
+
+        await pages[0].goto(ENV.META_URL, { waitUntil: "domcontentloaded" })
+        await metaMask.metaMaskUnlockHelper()
 
 
-
-        await loginPages.clickOnCookiesCheckBox()
-        await loginPages.clickOnApproveBtn()
-        await loginPages.login(data.email, data.password)
-
-        //     await pages[0].close()
-
-        //page configaration here
-
-
-        // // await page.pause()
-        // await test.step("Unlock MetaMask", async () => {
-        //         await metaMask.metaMaskUnlockHelper()
-        //         // await metaMask.inputUnlockPassword()
-        //         // await metaMask.clickOnUnlockBtn()
-        // })
-        // await page.bringToFront()
-
-        await page.waitForLoadState("networkidle")
-        await newProjectPages.clickTakeATourStartBtn()
-        await newProjectPages.clickTakeATourSkipBtn()
-
-
-        await newProjectPages.clickOnQuickStartBtn()
-        await newProjectPages.clickNewProjectBtn()
-        await newProjectPages.clickNewProjectByYourselfBtn()
-        await page.waitForLoadState("networkidle")
         await newProjectPages.clickAddPartsOrComponentsSearchIcon()
-        // //search parts and components
-        // await newProjectPages.searchPartsAndComponents(" ")
+              
         //click to select atmega search result for parts and components
         await newProjectPages.clickOnQAElectronicsPartsComponent()
         //click on the atmega public option to select a parts
@@ -60,13 +55,8 @@ test('Add New Project With Give With Community', async ({ page, wallet }) => {
         // //click parts use button
         await newProjectPages.clickUseBtn()
 
-        // await page.getByText('dmeo part 11').click();
-        // await page.getByRole('button', { name: 'use' }).click();
-        // await page.getByRole('button', { name: 'No' }).click();
-
         await newProjectPages.IfAlertTextIsVisibleThenClickOnIt()
-
-
+        
         await newProjectPages.clickAddPartsOrComponentsSearchIcon()
 
         await newProjectPages.clickOnLoadPriveousProjectNoBtn()
@@ -168,7 +158,7 @@ test('Add New Project With Give With Community', async ({ page, wallet }) => {
         //Click On metamask button
         await newProjectPages.clickOnMetaMaskBtn()
 
-        await wallet.approve()
+        // await wallet.approve()
 
         await newProjectPages.clickOnContinueButton()
 

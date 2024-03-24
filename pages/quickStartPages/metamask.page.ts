@@ -1,21 +1,17 @@
 import { expect } from "@playwright/test";
+import ENV from "@utils/env";
 import { existsSync, readFileSync } from 'fs'
 import { Page } from "playwright";
 export default class metaMaskPage {
-        page: Page;
-
-        // constructor(context) {
-        //         this.context = context;
-        //         this.page = context.pages()[0];
-        //     }
+       
         // [x: string]: any;
         // private page: Page;
         // static buffer: void;
         // constructor(page: Page | Page) {
         //         this.page = page;
         // }
-        constructor(page: Page) {
-                this.page = page;
+     
+    constructor(private page: Page) {
         }
         private metaMaskPageElements = {
                 termsAgreeCheckBox: `[type="checkbox"]`,
@@ -25,9 +21,9 @@ export default class metaMaskPage {
                 confirmPasswordInputField: `[data-testid="create-password-confirm"]`,
                 createPasswordConfirmCheckBox: `data-testid="create-password-terms"`,
                 createNewWalletBtn: `[data-testid="create-password-wallet"]`,
-                remindeMeLateBtn: `Remind me later (not recommended)`,
+                remindeMeLateBtn: `[data-testid="secure-wallet-later"]`,
                 skipAccountSecutrityBtn: `[data-testid="skip-srp-backup"]`,
-                gotItBtn: `Got it!`,
+                gotItBtn: `[data-testid="onboarding-complete-done"]`,
                 gotItBtnOnAddNetwork: `Got it`,
                 nextBtn: `[data-testid="pin-extension-next"]`,
                 doneBtn: `Done`,
@@ -39,6 +35,7 @@ export default class metaMaskPage {
                 addNetworkManuallySaveBtn: "Save",
                 switchToPoligonTestNet: "Switch to Polygon Testnet",
                 accountSelectionOpenBtn: `[data-testid="account-menu-icon"]`,
+                addAccountBtn: "Add account or hardware wallet",
                 importAccountBtn: "Import account",
                 accountKayInputBtn: '[type="password"]',
                 importBtn: `[data-testid="import-account-confirm-button"]`,
@@ -129,6 +126,13 @@ export default class metaMaskPage {
                         throw new Error(`Inside MetaMask | Temrs And Condition CheckBox Is Not Visible | Could not find locator:"${error}"`)
                 }
         }
+        async goToURL() {                
+                try {
+                        await this.page.goto(ENV.META_URL)
+                } catch (error) {
+                        throw new Error(`Inside MetaMask | Temrs And Condition CheckBox Is Not Visible | Could not find locator:"${error}"`)
+                }
+        }
         async clickTermsAndConditionCheckBox() {
                 const ele = await this.page.locator(this.metaMaskPageElements.termsAgreeCheckBox)
                 try {
@@ -193,7 +197,7 @@ export default class metaMaskPage {
         }
 
         async clickOnRemindeMeLateBtn() {
-                const ele = await this.page.getByText(this.metaMaskPageElements.remindeMeLateBtn)
+                const ele = await this.page.locator(this.metaMaskPageElements.remindeMeLateBtn)
                 try {
                         await ele.click({ button: "left", force: true })
                         await this.page.waitForTimeout(2000)
@@ -220,7 +224,7 @@ export default class metaMaskPage {
         }
 
         async clickOnGotItBtn() {
-                const ele = await this.page.getByText(this.metaMaskPageElements.gotItBtn)
+                const ele = await this.page.locator(this.metaMaskPageElements.gotItBtn)
                 try {
                         await ele.click({ button: "left", force: true })
                 } catch (error) {
@@ -351,8 +355,11 @@ export default class metaMaskPage {
         }
 
         async clickOnImportAccountBtn() {
+                const addAccountBtn = await this.page.getByText(this.metaMaskPageElements.addAccountBtn)
                 const ele = await this.page.getByText(this.metaMaskPageElements.importAccountBtn)
                 try {
+                        await addAccountBtn.click({ button: "left", force: true })
+
                         await ele.click({ button: "left", force: true })
                 } catch (error) {
                         throw new Error(`Inside MetaMask | import Account Button Is Not Visible | Could not find locator:"${error}"`)

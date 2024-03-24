@@ -6,7 +6,13 @@ import * as data from "@testData/login.cred.json";
 import ENV from "@utils/env";
 
 
+
 test('Buy Utility NFT Functionality', async ({ page, newProjectPage, loginPage, wallet }) => {
+        // Navigate to the base URL
+        // Accept cookies and approve necessary permissions
+        // Log in with provided credentials
+        // Navigate to the Utility NFT purchase page
+        // Initiate the purchase of a Utility NFT
 
 
         await page.goto(ENV.BASE_URL, { timeout: 1200000, waitUntil: "domcontentloaded" })

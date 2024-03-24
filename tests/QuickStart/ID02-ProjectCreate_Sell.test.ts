@@ -3,38 +3,53 @@ import LoginPage from "@pages/Login.page";
 import newProjectPage from "@pages/NewProject.page";
 import metaMaskPage from "@pages/metamask.page";
 import * as data from "@testData/login.cred.json";
+import ENV from "@utils/env";
 
 
 
 
-
-test('ID-003 | User | Validate Sell Project Create ', async ({ page }) => {
-
-
-        await page.goto("/user/dashboard/project/create", { timeout: 1200000, waitUntil: "domcontentloaded" })
+test('Verifies that a user can successfully add a new project with the "Sell', async ({ page }) => {
 
 
+
+        /*
+        Scenarios:
+          This test case verifies that a user can successfully add a new project with the "Sell" option.
+          It involves the following steps:
+          - Navigate to the base URL of the application.
+          - Accept cookies and approve necessary permissions.
+          - Log in using environment variables for username and password
+          - Wait for the network to be idle to ensure all resources are loaded
+          - Start the tour and then skip it to proceed to project creation
+          - Initiate adding parts or components to the project
+          - Click to select a specific parts component from the QA Electronics list
+          - Select the public option for the chosen parts
+          - Choose the first premium part available
+          - Confirm the use of the selected part in the project
+          - Handle any alert that might appear after adding a part
+          - Attempt to add another part or component
+          - Decline loading a previous project if prompted
+          - Re-attempt to add parts or components, addressing the issue where the modal does not collapse
+          - Proceed to the next section of the project creation process
+          - Submit the electronics section of the project
+          - Navigate to the code section of the project creation
+          -
+        */
+
+
+
+
+        await page.goto(ENV.BASE_URL+ENV.PROJECT_CREATE, { waitUntil: "domcontentloaded" })
 
         const pages = page.context().pages()
         console.log(pages.length);
 
-        //     await pages[0].close()
+        const loginPage = new LoginPage(page)
+        const metaMask = new metaMaskPage(pages[0])
+        const newProjectPages = new newProjectPage(page)
 
-        //page configaration here
-        const newProjectPages = new newProjectPage(pages[1])
-        const metaMask = new metaMaskPage(pages[2])
-
-        // await page.pause()
-        await test.step("Unlock MetaMask", async () => {
-                await metaMask.metaMaskUnlockHelper()
-                // await metaMask.inputUnlockPassword()
-                // await metaMask.clickOnUnlockBtn()
-        })
-        await page.bringToFront()
-
-
-        await newProjectPages.clickTakeATourStartBtn()
-        await newProjectPages.clickTakeATourSkipBtn()
+        await pages[0].goto(ENV.META_URL, { waitUntil: "domcontentloaded" })
+        await metaMask.metaMaskUnlockHelper()
 
         await newProjectPages.clickAddPartsOrComponentsSearchIcon()
         // //search parts and components

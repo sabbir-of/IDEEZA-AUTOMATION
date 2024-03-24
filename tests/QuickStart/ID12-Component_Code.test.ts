@@ -3,31 +3,43 @@ import LoginPage from "@pages/Login.page";
 import newProjectPage from "@pages/NewProject.page";
 import metaMaskPage from "@pages/metamask.page";
 import * as data from "@testData/login.cred.json";
+import ENV from "@utils/env";
 
 
 
         test('ID-Parts-3DCase-001 | User |  Validate User Can Successfully Part Wit 3D Case', async ({page}) => {
+                /*
+                  This test case is designed to validate that a user can successfully add a part with a 3D case in the system. 
+                  It involves the following steps:
+                  - Navigating to the "Add Component" section of the user dashboard.
+                  - Selecting the option to add a part with a 3D case.
+                  - Filling in the necessary details for the part, including name, description, and category.
+                  - Customizing the 3D case as per the requirements.
+                  - Submitting the part for addition to the system.
+                  - Verifying that the part has been successfully added and is visible in the user's dashboard.
+                */
+                /*
+                  This test case also ensures that appropriate error messages are displayed when the user attempts to add a part without completing all required fields. 
+                  It involves the following steps:
+                  - Navigating to the "Add Component" section without filling in all the necessary details.
+                  - Attempting to submit the part for addition.
+                  - Verifying that error messages are displayed for each required field that is left blank.
+                  - Correcting the errors and resubmitting the part.
+                  - Verifying that the part is successfully added after all required fields are completed.
+                */
 
-                await page.goto("/user/dashboard/code/add-component", { timeout: 1200000, waitUntil: "domcontentloaded" })
 
+                await page.goto(ENV.BASE_URL+ENV.PROJECT_CREATE, { waitUntil: "domcontentloaded" })
 
                 const pages = page.context().pages()
                 console.log(pages.length);
 
-                const newProjectPages = new newProjectPage(pages[1])
-                const metaMask = new metaMaskPage(pages[2])
+                const loginPage = new LoginPage(page)
+                const metaMask = new metaMaskPage(pages[0])
+                const newProjectPages = new newProjectPage(page)
 
-                // await page.pause()
-                await test.step("Unlock MetaMask", async () => {
-                        await metaMask.metaMaskUnlockHelper()
-                        // await metaMask.inputUnlockPassword()
-                        // await metaMask.clickOnUnlockBtn()
-                })
-                await page.bringToFront()
-
-
-                await newProjectPages.clickTakeATourStartBtn()
-                await newProjectPages.clickTakeATourSkipBtn()
+                await pages[0].goto(ENV.META_URL, { waitUntil: "domcontentloaded" })
+                await metaMask.metaMaskUnlockHelper()
 
                 await test.step("Component Create With Code | Add Part Section", async () => {
 
