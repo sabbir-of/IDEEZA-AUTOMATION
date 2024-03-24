@@ -14,7 +14,7 @@ import { Page } from "@playwright/test";
 import functions from "@testData/helper";
 import testData from "@testData/testData";
 import metaMaskPage from "@pages/metamask.page";
-import CollectionPage from "pages/admin/Collection.page";
+import CollectionPage from "../pages/adminPages/Collection.page";
 
 let page: Page;
 const test = base.extend<{

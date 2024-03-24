@@ -1,3 +1,2 @@
-2024/03/24-01:58:10.750 17f4 Reusing MANIFEST D:\Work Station\IDEEZA\IDEEZA-AUTOMATION\tests\setup\Data\Default\shared_proto_db\metadata/MANIFEST-000001
-2024/03/24-01:58:10.752 17f4 Recovering log #3
-2024/03/24-01:58:10.754 17f4 Reusing old log D:\Work Station\IDEEZA\IDEEZA-AUTOMATION\tests\setup\Data\Default\shared_proto_db\metadata/000003.log 
+2024/03/24-11:50:14.774 3160 Creating DB D:\Work Station\IDEEZA\IDEEZA-AUTOMATION\tests\setup\Data\Default\shared_proto_db\metadata since it was missing.
+2024/03/24-11:50:14.791 3160 Reusing MANIFEST D:\Work Station\IDEEZA\IDEEZA-AUTOMATION\tests\setup\Data\Default\shared_proto_db\metadata/MANIFEST-000001

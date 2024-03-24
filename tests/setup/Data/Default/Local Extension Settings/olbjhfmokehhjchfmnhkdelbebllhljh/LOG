@@ -1,32 +1,35 @@
-2024/03/24-01:58:13.018 4ce4 Reusing MANIFEST D:\Work Station\IDEEZA\IDEEZA-AUTOMATION\tests\setup\Data\Default\Local Extension Settings\olbjhfmokehhjchfmnhkdelbebllhljh/MANIFEST-000001
-2024/03/24-01:58:13.019 4ce4 Recovering log #34
-2024/03/24-01:58:13.066 4ce4 Level-0 table #38: started
-2024/03/24-01:58:13.116 4ce4 Level-0 table #38: 2672775 bytes OK
-2024/03/24-01:58:13.122 4ce4 Delete type=0 #34
-2024/03/24-01:58:36.146 2884 Level-0 table #41: started
-2024/03/24-01:58:36.223 2884 Level-0 table #41: 2675640 bytes OK
-2024/03/24-01:58:36.231 2884 Delete type=0 #39
-2024/03/24-01:58:44.912 2884 Level-0 table #43: started
-2024/03/24-01:58:44.952 2884 Level-0 table #43: 2673431 bytes OK
-2024/03/24-01:58:44.954 2884 Delete type=0 #40
-2024/03/24-01:59:06.559 2884 Level-0 table #45: started
-2024/03/24-01:59:06.625 2884 Level-0 table #45: 2673436 bytes OK
-2024/03/24-01:59:06.630 2884 Delete type=0 #42
-2024/03/24-01:59:06.637 2884 Compacting 4@0 + 1@1 files
-2024/03/24-01:59:06.838 2884 Generated table #46@0: 1 keys, 1336751 bytes
-2024/03/24-01:59:06.838 2884 Compacted 4@0 + 1@1 files => 1336751 bytes
-2024/03/24-01:59:06.840 2884 compacted to: files[ 0 1 1 0 0 0 0 ]
-2024/03/24-01:59:06.841 2884 Delete type=2 #36
-2024/03/24-01:59:06.842 2884 Delete type=2 #38
-2024/03/24-01:59:06.842 2884 Delete type=2 #41
-2024/03/24-01:59:06.842 2884 Delete type=2 #43
-2024/03/24-01:59:06.842 2884 Delete type=2 #45
-2024/03/24-01:59:25.708 2884 Level-0 table #48: started
-2024/03/24-01:59:25.747 2884 Level-0 table #48: 2673427 bytes OK
-2024/03/24-01:59:25.750 2884 Delete type=0 #44
-2024/03/24-01:59:45.905 2884 Level-0 table #50: started
-2024/03/24-01:59:45.935 2884 Level-0 table #50: 2673432 bytes OK
-2024/03/24-01:59:45.938 2884 Delete type=0 #47
-2024/03/24-02:00:06.268 2884 Level-0 table #52: started
-2024/03/24-02:00:06.308 2884 Level-0 table #52: 2673433 bytes OK
-2024/03/24-02:00:06.311 2884 Delete type=0 #49
+2024/03/24-11:50:16.709 4690 Creating DB D:\Work Station\IDEEZA\IDEEZA-AUTOMATION\tests\setup\Data\Default\Local Extension Settings\olbjhfmokehhjchfmnhkdelbebllhljh since it was missing.
+2024/03/24-11:50:16.715 4690 Reusing MANIFEST D:\Work Station\IDEEZA\IDEEZA-AUTOMATION\tests\setup\Data\Default\Local Extension Settings\olbjhfmokehhjchfmnhkdelbebllhljh/MANIFEST-000001
+2024/03/24-11:50:29.765 3160 Level-0 table #5: started
+2024/03/24-11:50:29.789 3160 Level-0 table #5: 2681869 bytes OK
+2024/03/24-11:50:29.792 3160 Delete type=0 #3
+2024/03/24-11:50:50.679 3160 Level-0 table #7: started
+2024/03/24-11:50:50.701 3160 Level-0 table #7: 2685345 bytes OK
+2024/03/24-11:50:50.704 3160 Delete type=0 #4
+2024/03/24-11:51:06.902 3160 Level-0 table #9: started
+2024/03/24-11:51:06.947 3160 Level-0 table #9: 2687500 bytes OK
+2024/03/24-11:51:06.955 3160 Delete type=0 #6
+2024/03/24-11:51:29.440 3160 Level-0 table #11: started
+2024/03/24-11:51:29.466 3160 Level-0 table #11: 2685761 bytes OK
+2024/03/24-11:51:29.469 3160 Delete type=0 #8
+2024/03/24-11:51:50.822 3160 Level-0 table #13: started
+2024/03/24-11:51:50.897 3160 Level-0 table #13: 2685410 bytes OK
+2024/03/24-11:51:50.906 3160 Delete type=0 #10
+2024/03/24-11:52:03.949 3160 Level-0 table #15: started
+2024/03/24-11:52:04.039 3160 Level-0 table #15: 2685687 bytes OK
+2024/03/24-11:52:04.047 3160 Delete type=0 #12
+2024/03/24-11:52:04.053 3160 Compacting 4@0 + 1@1 files
+2024/03/24-11:52:04.258 3160 Generated table #16@0: 1 keys, 1343014 bytes
+2024/03/24-11:52:04.258 3160 Compacted 4@0 + 1@1 files => 1343014 bytes
+2024/03/24-11:52:04.262 3160 compacted to: files[ 0 1 1 0 0 0 0 ]
+2024/03/24-11:52:04.263 3160 Delete type=2 #7
+2024/03/24-11:52:04.263 3160 Delete type=2 #9
+2024/03/24-11:52:04.263 3160 Delete type=2 #11
+2024/03/24-11:52:04.263 3160 Delete type=2 #13
+2024/03/24-11:52:04.263 3160 Delete type=2 #15
+2024/03/24-11:52:11.115 3160 Level-0 table #18: started
+2024/03/24-11:52:11.166 3160 Level-0 table #18: 2687891 bytes OK
+2024/03/24-11:52:11.175 3160 Delete type=0 #14
+2024/03/24-11:52:22.689 3160 Level-0 table #20: started
+2024/03/24-11:52:22.737 3160 Level-0 table #20: 2685933 bytes OK
+2024/03/24-11:52:22.742 3160 Delete type=0 #17

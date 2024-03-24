@@ -1,3 +1,2 @@
-2024/03/24-01:58:10.685 30b4 Reusing MANIFEST D:\Work Station\IDEEZA\IDEEZA-AUTOMATION\tests\setup\Data\Default\Session Storage/MANIFEST-000001
-2024/03/24-01:58:10.690 30b4 Recovering log #3
-2024/03/24-01:58:10.699 30b4 Reusing old log D:\Work Station\IDEEZA\IDEEZA-AUTOMATION\tests\setup\Data\Default\Session Storage/000003.log 
+2024/03/24-11:50:14.728 5654 Creating DB D:\Work Station\IDEEZA\IDEEZA-AUTOMATION\tests\setup\Data\Default\Session Storage since it was missing.
+2024/03/24-11:50:14.756 5654 Reusing MANIFEST D:\Work Station\IDEEZA\IDEEZA-AUTOMATION\tests\setup\Data\Default\Session Storage/MANIFEST-000001

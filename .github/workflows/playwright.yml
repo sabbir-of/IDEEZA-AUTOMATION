@@ -24,7 +24,7 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: npm run test:stg campaignCreate.test.ts
+        run: npm run test:stg ID00-ProjectSetup.test.ts
 
       - name: Setup Pages
         uses: actions/configure-pages@v2

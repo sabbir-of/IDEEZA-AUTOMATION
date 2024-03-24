@@ -5,7 +5,7 @@ import newProjectPage from "@pages/NewProject.page";
 import metaMaskPage from "@pages/metamask.page";
 import componentPage from "@pages/Component.page";
 import * as data from "@testData/login.cred.json";
-import CollectionPage from "pages/admin/Collection.page";
+import CollectionPage from "../../pages/adminPages/Collection.page";
 import ENV from "@utils/env";
 import ComponentPage from "@pages/Component.page";
 import functions from "@testData/helper";
