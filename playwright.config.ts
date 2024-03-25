@@ -1,7 +1,9 @@
 import { join } from 'path';
 import type { PlaywrightTestConfig } from '@playwright/test';
 const path = require('path');
-const pathToExtension = path.join(__dirname, './tests/fixtures/metamask-chrome-11.10.0');
+// const pathToExtension = path.join(__dirname, './tests/fixtures/metamask-chrome-11.10.0');
+const pathToExtension = path.join(__dirname, './tests/admin/MetaMask.crx');
+
 const userDataDir = path.join(__dirname, '/tests/QuickStart/User-Data-Dir/Chrome/User Data/Default/Extensions/nkbihfbeogaeaoehlefnkodbefgpgknn/10.35.1_0');
 import ENV from "@utils/env";
 

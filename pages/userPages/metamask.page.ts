@@ -127,11 +127,11 @@ export default class metaMaskPage {
                 }
         }
         async goToURL() {                
-                try {
+                // try {
                         await this.page.goto(ENV.META_URL)
-                } catch (error) {
-                        throw new Error(`Inside MetaMask | Temrs And Condition CheckBox Is Not Visible | Could not find locator:"${error}"`)
-                }
+                // } catch (error) {
+                //         throw new Error(`Inside MetaMask | Temrs And Condition CheckBox Is Not Visible | Could not find locator:"${error}"`)
+                // }
         }
         async clickTermsAndConditionCheckBox() {
                 const ele = await this.page.locator(this.metaMaskPageElements.termsAgreeCheckBox)

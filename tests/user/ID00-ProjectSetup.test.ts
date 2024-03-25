@@ -68,8 +68,9 @@ Continue with further application interactions and agree to final terms.
                 const metaMask = new metaMaskPage(pages[0])
                 const newProjectPages = new newProjectPage(page)
 
-                await pages[0].goto(ENV.META_URL, { waitUntil: "domcontentloaded" })
+                // await pages[0].goto(ENV.META_URL, { waitUntil: "domcontentloaded" })
 
+                await  metaMask.goToURL()
                 await page.bringToFront()
                 await page.bringToFront()
 

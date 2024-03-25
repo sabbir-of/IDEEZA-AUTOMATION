@@ -10,8 +10,10 @@ export const test = base.extend<{
 }>({
   context: async ({ }, use) => {
     const pathToExtension = path.join(__dirname, './metamask-chrome-11.12.4');
+    // const pathToExtension = path.join(__dirname, './MetaMask.crx');
+
     const context = await chromium.launchPersistentContext(userDirData, {
-      headless: true,
+      headless: false,
       args: [
         `--disable-extensions-except=${pathToExtension}`,
         `--load-extension=${pathToExtension}`,
