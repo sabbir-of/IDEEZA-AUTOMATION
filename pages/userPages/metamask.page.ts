@@ -55,15 +55,15 @@ export default class metaMaskPage {
 
 
 
-        try {
+        // try {
             const popup = await this.page.context().waitForEvent("page");
             await popup.locator(this.metaMaskPageElements.passwordInputField).fill("secretpassword")
             await popup.locator(this.metaMaskPageElements.unloackBtn).click()
 
 
-        } catch (error) {
-            throw new Error(`Inside MetaMask | New Password Input Field Is Not Visible | Could not find locator:"${error}"`)
-        }
+        // } catch (error) {
+        //     throw new Error(`Inside MetaMask | New Password Input Field Is Not Visible | Could not find locator:"${error}"`)
+        // }
     }
         async gotToUrl() {
                 await this.page.goto('chrome-extension://jemiocedphikojcheklknknaehfmoedk/home.html');
