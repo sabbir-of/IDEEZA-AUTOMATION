@@ -65,12 +65,12 @@ Continue with further application interactions and agree to final terms.
                 console.log(pages.length);
 
                 const loginPage = new LoginPage(page)
-                const metaMask = new metaMaskPage(pages[0])
+                const metaMask = new metaMaskPage(pages[2])
                 const newProjectPages = new newProjectPage(page)
 
                 // await pages[0].goto(ENV.META_URL, { waitUntil: "domcontentloaded" })
 
-                await  metaMask.goToURL()
+                // await  metaMask.goToURL()
                 await page.bringToFront()
                 await page.bringToFront()
 
@@ -123,7 +123,7 @@ Continue with further application interactions and agree to final terms.
 
 
 
-                await pages[0].goto(ENV.META_URL, { waitUntil: "domcontentloaded" })
+                // await pages[0].goto(ENV.META_URL, { waitUntil: "domcontentloaded" })
 
                 // await metaMask.metaMaskUnlockHelper()
 
