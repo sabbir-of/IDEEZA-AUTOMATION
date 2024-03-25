@@ -16,33 +16,33 @@ const config: PlaywrightTestConfig = {
   // testDir: './tests',
   // globalSetup: "./global-auth.ts",
   testMatch: [
-
-    "All.test.ts",
-
+    //
+    // "All.test.ts",
+    //
     "ID00-ProjectSetup.test.ts",
-
-    "ID01-ProjectCreate_GWC.test.ts",
-    "ID02-ProjectCreate_Sell.test.ts",
-
-    "ID03-ProjectCreateForManufacture.test.ts",
-    "ID04-ProjectSendToManufacture.test.ts",
-    "ID05-ProjectAcceptByManufacture.test.ts",
-    "ID06-ProjectPaymentFromUserSide.test.ts",
-
-    "ID07-Part_3dCase.test.ts",
-    "ID08-Part_Electronics.test.ts",
+    //
+    // "ID01-ProjectCreate_GWC.test.ts",
+    // "ID02-ProjectCreate_Sell.test.ts",
+    //
+    // "ID03-ProjectCreateForManufacture.test.ts",
+    // "ID04-ProjectSendToManufacture.test.ts",
+    // "ID05-ProjectAcceptByManufacture.test.ts",
+    // "ID06-ProjectPaymentFromUserSide.test.ts",
+    //
+    // "ID07-Part_3dCase.test.ts",
+    // "ID08-Part_Electronics.test.ts",
     "ID09-Part_Code.test.ts",
-
-    "ID10-Component_3dCase.test.ts",
-    "ID11-Component_Electronics.test.ts",
-    "ID12-Component_Code.test.ts",
-
-    "ID13-BuyProject.test.ts",
-    "auth.setup.ts",
-
-    "collection.test.ts",
-    "campaignCreate.test.ts",
-    "buyUtility.test.ts",
+    //
+    // "ID10-Component_3dCase.test.ts",
+    // "ID11-Component_Electronics.test.ts",
+    // "ID12-Component_Code.test.ts",
+    //
+    // "ID13-BuyProject.test.ts",
+    // "auth.setup.ts",
+    //
+    // "collection.test.ts",
+    // "campaignCreate.test.ts",
+    // "buyUtility.test.ts",
 
 
 

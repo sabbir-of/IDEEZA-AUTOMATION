@@ -55,12 +55,12 @@ test('ID-Parts-3DCase-001 | User |  Validate User Can Successfully Add Part With
         console.log(pages.length);
 
         const loginPage = new LoginPage(page)
-        const metaMask = new metaMaskPage(pages[0])
+        const metaMask = new metaMaskPage(pages[1])
         const newProjectPages = new newProjectPage(page)
 
-        await pages[0].goto(ENV.META_URL, { waitUntil: "domcontentloaded" })
+        // await pages[0].goto(ENV.META_URL, { waitUntil: "domcontentloaded" })
 
-        await metaMask.metaMaskUnlockHelper()
+        // await metaMask.metaMaskUnlockHelper()
 
 
         await test.step("Part Create With Code | Add Part Section", async () => {
@@ -121,7 +121,7 @@ test('ID-Parts-3DCase-001 | User |  Validate User Can Successfully Add Part With
         await newProjectPages.clickOnMetaMaskBtn()
 
 
-        // await newProjectPages.approveMetaMask()
+        await metaMask.metaMaskUnlock()
 
         await newProjectPages.clickOnContinueButton()
         await page.waitForLoadState("load")

@@ -51,9 +51,22 @@ export default class metaMaskPage {
         }
 
 
+    async metaMaskUnlock() {
 
+
+
+        try {
+            const popup = await this.page.context().waitForEvent("page");
+            await popup.locator(this.metaMaskPageElements.passwordInputField).fill("secretpassword")
+            await popup.locator(this.metaMaskPageElements.unloackBtn).click()
+
+
+        } catch (error) {
+            throw new Error(`Inside MetaMask | New Password Input Field Is Not Visible | Could not find locator:"${error}"`)
+        }
+    }
         async gotToUrl() {
-                await await this.page.goto('chrome-extension://jemiocedphikojcheklknknaehfmoedk/home.html');
+                await this.page.goto('chrome-extension://jemiocedphikojcheklknknaehfmoedk/home.html');
         }
         async approveMetaMask() {
 
@@ -80,6 +93,8 @@ export default class metaMaskPage {
                         throw new Error(`Inside MetaMask | New Password Input Field Is Not Visible | Could not find locator:"${error}"`)
                 }
         }
+
+
 
         async inputUnlockPassword() {
                 const ele = await this.page.locator(this.metaMaskPageElements.passwordInputField)
@@ -133,6 +148,18 @@ export default class metaMaskPage {
                 //         throw new Error(`Inside MetaMask | Temrs And Condition CheckBox Is Not Visible | Could not find locator:"${error}"`)
                 // }
         }
+
+    async inputWithMetaMaskPass() {
+
+        // const approveSpending = async (page: Page) => {
+        const popup = await this.page.context().waitForEvent("page");
+        await popup.getByRole("button", { name: "Next" }).click();
+        await popup.getByRole("button", { name: "Connect" }).click();
+
+        // await popup.getByRole("button", { name: "Approve" }).click();
+        // };
+
+    }
         async clickTermsAndConditionCheckBox() {
                 const ele = await this.page.locator(this.metaMaskPageElements.termsAgreeCheckBox)
                 try {

@@ -24,14 +24,14 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: npm run test:stg ID00-ProjectSetup.test.ts
+        run: npm run test:stg
 
       - name: Setup Pages
         uses: actions/configure-pages@v2
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          GITHUB_TOKEN: "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"
+#          GITHUB_TOKEN: "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"
           # Upload entire repository
           path: ./playwright-report
       - name: Deploy to GitHub Pages

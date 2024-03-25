@@ -125,7 +125,7 @@ Continue with further application interactions and agree to final terms.
 
                 // await pages[0].goto(ENV.META_URL, { waitUntil: "domcontentloaded" })
 
-                // await metaMask.metaMaskUnlockHelper()
+                await metaMask.metaMaskUnlockHelper()
 
 
 

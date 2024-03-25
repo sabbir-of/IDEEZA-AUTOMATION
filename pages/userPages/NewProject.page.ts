@@ -1885,6 +1885,8 @@ export default class newProjectPage {
 
         }
 
+
+
         async clickOnContinueButton() {
                 const ele = await this.page.locator(this.newProjectPageElements.contineuBtn)
                 try {
