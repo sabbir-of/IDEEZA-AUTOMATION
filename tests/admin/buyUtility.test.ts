@@ -7,7 +7,7 @@ import ENV from "@utils/env";
 
 
 
-test('Buy Utility NFT Functionality', async ({ page, newProjectPage, loginPage, wallet }) => {
+test('Buy Utility NFT Functionality', async ({ page, newProjectPage, loginPage }) => {
         // Navigate to the base URL
         // Accept cookies and approve necessary permissions
         // Log in with provided credentials

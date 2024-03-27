@@ -18,7 +18,7 @@ const config: PlaywrightTestConfig = {
   testMatch: [
     //
     // "All.test.ts",
-    //
+
     "ID00-ProjectSetup.test.ts",
     //
     // "ID01-ProjectCreate_GWC.test.ts",
@@ -31,14 +31,14 @@ const config: PlaywrightTestConfig = {
     //
     // "ID07-Part_3dCase.test.ts",
     // "ID08-Part_Electronics.test.ts",
-    "ID09-Part_Code.test.ts",
+    // "ID09-Part_Code.test.ts",
     //
     // "ID10-Component_3dCase.test.ts",
     // "ID11-Component_Electronics.test.ts",
     // "ID12-Component_Code.test.ts",
     //
     // "ID13-BuyProject.test.ts",
-    // "auth.setup.ts",
+    // // "auth.setup.ts",
     //
     // "collection.test.ts",
     // "campaignCreate.test.ts",
