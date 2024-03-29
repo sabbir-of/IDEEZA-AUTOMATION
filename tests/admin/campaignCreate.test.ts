@@ -49,7 +49,7 @@ test('Campaign Create', async ({ page }) => {
 
         await loginPage.clickOnCookiesCheckBox()
         await loginPage.clickOnApproveBtn()
-        await loginPage.login(ENV.ADMINEMAIL, ENV.ADMINPASSWORD)
+        await loginPage.login(ENV.ADMIN_EMAIL, ENV.ADMIN_PASSWORD)
         await page.waitForLoadState("networkidle")
 
 
