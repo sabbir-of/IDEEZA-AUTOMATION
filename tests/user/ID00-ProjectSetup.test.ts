@@ -9,10 +9,10 @@ import {deleteFolderRecursive} from "../setup/removeFolder";
 const getNumber = Math.floor(Math.random() * 10)
 test.describe('IDEEZA Project Setup', () => {
 
-        test("Delete Folder", async () => {
+        test.only("Delete Folder", async () => {
         await deleteFolderRecursive;
         });
-        test('Project Setup And Wallet Connection', async ({page }) => {
+        test.only('Project Setup And Wallet Connection', async ({page }) => {
                 /*
                 Navigate to Base URL: Open the base URL of the application, waiting until the DOM content is fully loaded.
 
