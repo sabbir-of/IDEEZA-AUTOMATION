@@ -19,7 +19,7 @@ const config: PlaywrightTestConfig = {
     //
     // "All.test.ts",
 
-    "ID00-ProjectSetup.test.ts",
+    // "ID00-ProjectSetup.test.ts",
     //
     // "ID01-ProjectCreate_GWC.test.ts",
     // "ID02-ProjectCreate_Sell.test.ts",
@@ -40,8 +40,8 @@ const config: PlaywrightTestConfig = {
     // "ID13-BuyProject.test.ts",
     // // "auth.setup.ts",
     //
-    // "collection.test.ts",
-    // "campaignCreate.test.ts",
+    "collection.test.ts",
+    "campaignCreate.test.ts",
     // "buyUtility.test.ts",
 
 
@@ -59,21 +59,21 @@ const config: PlaywrightTestConfig = {
   retries: process.env.CI ? 1 : 0,
   workers: process.env.CI ? 1 : 1,
 
-  reporter: process.env.CI ? [["junit", {
-    outputFile: "results.xml"
-  }]] : [["json", {
-    outputFile: "report.json"
-  }], ["html", {
-    open: "never"
-  }]],
+  // reporter: process.env.CI ? [["junit", {
+  //   outputFile: "results.xml"
+  // }]] : [["json", {
+  //   outputFile: "report.json"
+  // }], ["html", {
+  //   open: "never"
+  // }]],
 
   // reporter: [ ['html', { outputFolder: './playwright-report/'+ ReportDate}]],
 
 
 
-  // reporter: [["html", {
-  //   open: "never"
-  // }], ['./My-Reporter.js']],
+  reporter: [["html", {
+    open: "never"
+  }], ['./My-Reporter.js']],
 
   // globalTeardown: require.resolve("./mailer.ts"),
 

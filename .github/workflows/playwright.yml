@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-2019  # You can specify the OS here
+    runs-on: ubuntu-latest  # You can specify the OS here
 
     steps:
       - uses: actions/checkout@v2  # Checks-out your repository
@@ -26,19 +26,18 @@ jobs:
       - name: Run Playwright tests
         run: npm run test:stg  # Replace with your test script
 
-      - name: Upload Playwright reports
-        uses: actions/upload-artifact@v2
-        if: always()  # Always upload reports, even if tests fail
-        with:
-          name: playwright-reports
-          path: ./playwright-report  # Replace with the path to your reports
 
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.4
-        if: always()  # Only deploy if previous steps were successful
-        with:
-          branch: gh-pages  # The branch the action should deploy to.
-          folder: ./playwright-report  # The folder the action should deploy.
+      - name: copy contents of playwright-report
+        if: always()
+        run: |
+          mkdir -p generated-report
+          cp -r ${{ github.workspace }}/playwright-report/* generated-report/
 
-      - name: Print PATH
-        run: echo $PATH
+      - name: Publish HTML report
+        if: always()
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: generated-report
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
