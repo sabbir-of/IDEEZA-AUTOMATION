@@ -19,7 +19,7 @@ const config: PlaywrightTestConfig = {
     //
     // "All.test.ts",
 
-    // "ID00-ProjectSetup.test.ts",
+    "ID00-ProjectSetup.test.ts",
     //
     // "ID01-ProjectCreate_GWC.test.ts",
     // "ID02-ProjectCreate_Sell.test.ts",
@@ -40,8 +40,8 @@ const config: PlaywrightTestConfig = {
     // "ID13-BuyProject.test.ts",
     // // "auth.setup.ts",
     //
-    "collection.test.ts",
-    "campaignCreate.test.ts",
+    // "collection.test.ts",
+    // "campaignCreate.test.ts",
     // "buyUtility.test.ts",
 
 
